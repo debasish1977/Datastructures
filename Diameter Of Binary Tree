@@ -1,0 +1,51 @@
+Leetcode 543: Diameter of Binary Tree
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+//Explain
+//Is the diameter measured on edges or nodes?
+//Can the tree be empty?
+
+//Approach
+//I will solve this using DFS postorder traversal
+//At every node, leftHeight = height of left subtree
+//rightHeight = height of right subtree
+//diameter through current node = leftHeight + rightHeight
+//Maintain a global maximum diameter
+//Return height upward : 1+ Max(leftHeight,rightHeight)
+
+//Time Complexity: O(N)
+//Space Complexity: O(h)
+
+
+class Solution {
+    private int maxDiameter = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root);
+        return maxDiameter;
+    }
+
+    //Helper method to calculate the height
+    private int height(TreeNode node){
+        if(node==null)return 0;
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        maxDiameter = Math.max(maxDiameter,leftHeight+rightHeight);
+        return 1 + Math.max(leftHeight,rightHeight);
+    }
+       
+}
