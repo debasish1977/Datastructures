@@ -1,0 +1,38 @@
+LeetCode 3: Longest Substring Without Repeating Characters
+//Clarifying Questions
+//Input string consists of english letters, digits, symbols & spaces?
+//Input string can be empty?
+//Need to return longest substring without duplicate characters?
+
+//Approach
+//I will solve this using Sliding Window & HashMap approach
+//I will maintain a sliding window[left..right] with no duplicate characters
+//The HashMap will store the latest window of each character
+//When I see a repeated character inside the current window,
+//I move left to one position after its previous occurance
+//At every step, I update maxLength
+
+//Time Complexity: O(N)
+//Space complexity: O(min(N, charset size))
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+       if(s==null || s.length()==0)return 0;
+       HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+       int left = 0;
+       int maxLen = 0;
+       for(int right=0;right<s.length();right++){
+         char ch = s.charAt(right);
+         if(map.containsKey(ch)){
+           left = Math.max(left,map.get(ch)+1);
+         }
+         map.put(ch,right);
+         maxLen = Math.max(maxLen,right - left + 1);
+       }
+       return maxLen;
+    }
+}
+
+
+        
