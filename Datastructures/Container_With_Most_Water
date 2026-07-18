@@ -1,0 +1,41 @@
+LeetCode 11: Container With Most Water
+//Clarification Questions
+//Can the input contain fewer then two lines?
+//Should I return 0 for an empty or null input?
+//Are the heights guranteed to be non negative?
+
+//Approach
+//I will solve this using two pointer technique
+//One pointer starts at the left end & other at the right end
+//At each step, I compute the area formed by the two lines
+//Since the area is limited by shorter lines, moving the taller line inward
+//can not increase the area while reducing the width
+//Therefore I always point the pointer to the shorter line, hoping to find a taller line
+//that may produce a large area
+//I continue until the pointers meet while maintaining the max area so far
+
+//Time Complexity: O(N)
+//Space Complexity: O(1)
+
+
+class Solution {
+    public int maxArea(int[] height) {
+        if(height==null || height.length < 2)return 0;
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+        while(left < right){
+            int ht = Math.min(height[left],height[right]);
+            int width = right - left;
+            int area = ht * width;
+            maxArea = Math.max(area,maxArea);
+            if(height[left] < height[right]){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+        return maxArea;
+    }
+}

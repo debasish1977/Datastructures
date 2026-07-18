@@ -1,0 +1,47 @@
+Leetcode 33 - Search in Rotated Array
+//Clarifying questions
+//Only +ve integers?
+//Input array can be empty?
+
+//Approach
+//I will solve this using Binary Search algorithm
+/*
+Since the array is a rotated sorted array with unique elements, at least one half of the current search interval is always sorted. I identify the sorted half and determine whether the target lies within it. If it does, I continue searching that half; otherwise, I search the other half. This allows me to eliminate half of the search space in every iteration, preserving the O(log n) complexity.
+*/
+
+//Time Complexity: O(logn)
+//Space Complexity: O(1)
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums==null || nums.length==0)return -1;
+        int left = 0;
+        int right = nums.length - 1;
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            //check if the left half is sorted
+            if(nums[left] <= nums[mid]){
+               if(nums[left] <= target && target < nums[mid]){
+                  right = mid - 1;
+               }
+               else {
+                 left = mid + 1;
+               }
+            }
+            else{
+                //Check if right half is sorted
+                if(nums[mid] < target && target <= nums[right]){
+                   left = mid + 1;
+                }
+                else{
+                   right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}

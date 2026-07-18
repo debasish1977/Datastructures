@@ -1,0 +1,32 @@
+LeetCode 215: Kth Largest Element in an Array
+//Clarifying questions
+//Array contains both +ve & -ve integers?
+//Can the array contain duplicate elements?
+//Can the array be empty?
+//Is K always valid (1 <= k <= nums.length)?
+//What should I return if K is invalid?
+
+//Approach
+//I will solve this using heap
+//I will maintain a mean heap of size K
+//As I iterate through the array, I insert each element into the Heap
+//Whenever the heap size is greater then K, I remove the smallest element
+//This gurantees heap always contains K largest elements seen so far
+//At the end, the root of the min-heap is the kth largest element
+
+//Time Complexity: O(Nlogk)
+//Space Complexity: O(K)
+
+class Solution {
+    public int findKthLargest(int[] nums,int k){
+        if(nums==null || nums.length==0) return 0;
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for(int num:nums){
+            queue.offer(num);
+            if(queue.size() > k){
+              queue.poll();
+            }
+        }
+        return queue.peek();
+    }
+ }

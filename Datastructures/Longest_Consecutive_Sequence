@@ -1,0 +1,37 @@
+LeetCode 128 - Longest Consecutive Sequence
+//Clarifying questions
+//Only +ve integers?
+//Must write the algorithm that runs in O(n) time
+//Both +ve and -ve integers?
+
+//Approach
+//I will insert all numbers into a hashset to support average O(1) membership checks
+//Then I will iterate throguh the unique numbers
+//A number is the beginning of the sequence only when its predecessor num -1 does exist in the set
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums==null || nums.length==0)return 0;
+        HashSet<Integer> elementSet = new HashSet<>();
+        for(int num:nums){
+            elementSet.add(num);
+        }
+
+        int maxLength = 0;
+        for(int num:elementSet){
+            if(!elementSet.contains(num-1)){
+                int current = num;
+                int currentLength = 1;
+                while(elementSet.contains(current+1)) {
+                    current++;
+                    currentLength++;
+                }
+                maxLength = Math.max(maxLength,currentLength);
+          }
+        }
+        return maxLength;
+    }
+}

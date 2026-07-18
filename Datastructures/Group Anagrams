@@ -1,0 +1,39 @@
+Leetcode 49: Group Anagrams
+//Clarifying questions
+//Are Strings lowercase characters only?
+//Should the group be returned in any order?
+//Can the input array be empty?
+
+//Approach
+//I will use frequency count signature as the key
+//For each string, I count the frequency of characters from 'a' to 'z'
+//Then I convert the frequency array into a unique key
+//All strings with the same key are anagrams, so I group them as HashMap
+
+//Time Complexity: O(n*k)
+//Space Complexity: O(n*k)
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs){
+        List<List<String>> result = new ArrayList<>();        
+        if(strs==null || strs.length==0)return result;
+        HashMap<String,List<String>> map = new HashMap<>();
+        for(String str:strs){
+            int[] freq = new int[26];
+            for(char ch:str.toCharArray()){
+                freq[ch - 'a']++;
+            }
+            StringBuffer strBuff = new StringBuffer();
+            for(int count:freq){
+                strBuff.append('#');
+                strBuff.append(count);
+            }
+            String Key = strBuff.toString();
+            if(!map.containsKey(Key)){
+                map.put(Key,new ArrayList<>());
+            }
+            map.get(Key).add(str);
+        }
+        return new ArrayList<>(map.values());
+    } 
+}

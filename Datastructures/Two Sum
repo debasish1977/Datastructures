@@ -1,0 +1,30 @@
+LeetCode 1: Two Sum
+//Clarifying questions
+//Array contain only +ve integers?
+//Each input would have exactly one solution?
+
+//Approach
+//I will solve this using HashMap approach
+//I will iterate through the input array and and for each element calculate the complement
+//If the complement exists in the hashmap then I will return the index 
+//Else I will put the element and the index in the map
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
+
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        if(nums==null || nums.length==0)return new int[0];
+        int remainder = 0;
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int i=0;i<nums.length;i++){
+           remainder = target - nums[i];
+           if(map.containsKey(remainder)){
+             return new int[] {map.get(remainder),i};
+           }
+           map.put(nums[i],i);
+        }
+        return new int[0];
+    }
+}
