@@ -1,0 +1,93 @@
+LeetCode 146 -- LRU Cache
+//Clarifying questions
+//get(key) returns -1, if the key does not exist?
+//put(key,value) updates value if key already exists?
+//Both get & put must be O(1)
+
+//Core Idea
+//I will use HashMap --> find node in O(1)
+//Doubly Linked List --> maintain recent usage order in O(1)
+//Most recently used near the head & least recently used near the tail
+
+//Time Complexity: Get -- O(1), put -- O(1)
+//Space Complexity: O(1)
+class LRUCache {
+    private class Node {
+        int key;
+        int value;
+        Node next;
+        Node prev;
+        Node(int key,int value){
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private final int capacity;
+    private final Map<Integer,Node> map;
+    private final Node head;
+    private final Node tail;
+
+    public LRUCache(int capacity){
+        this.capacity = capacity;
+        this.map = new HashMap<>();
+        head = new Node(-1,-1);
+        tail = new Node(-1,-1);
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public int get(int key){
+        if(!map.containsKey(key)){
+            return -1;
+        }
+        Node node = map.get(key);
+        remove(node);
+        addToTheFront(node);
+        return node.value;
+    }
+
+    public void put(int key,int value){
+        if(map.containsKey(key)){
+            Node existingNode = map.get(key);
+            existingNode.value = value;
+            remove(existingNode);
+            addToTheFront(existingNode);
+            return;
+        }
+        if(map.size() == capacity){
+            Node lruNode = tail.prev;
+            remove(lruNode);
+            map.remove(lruNode.key);
+        }
+
+        Node newNode = new Node(key,value);
+        map.put(key,newNode);
+        addToTheFront(newNode);
+    }
+
+    private void remove(Node node){
+        Node previousNode = node.prev;
+        Node nextNode = node.next;
+        previousNode.next = nextNode;
+        nextNode.prev = previousNode;
+    }
+
+    private void addToTheFront(Node node){
+        Node firstNode = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next = firstNode;
+        firstNode.prev = node;
+    }
+
+
+    
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */

@@ -1,0 +1,38 @@
+Leetcode 128: Longest Consecutive Sequence
+//Clarifying Questions
+//Can there be duplicate numbers?
+//Can the array be empty?
+//What is the expected output of an empty array?
+
+//Approach
+//I will insert every number into a HashSet to allow O(1) average lookup
+//Then I will iterate through each unique number
+//A number is considered beginning of a sequence, only if it's predecessor's does not exist
+//From each sequence start, I will expand forward until the sequence ends, keeping track of the maximum length
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums==null || nums.length==0)return 0;
+        Set<Integer> set = new HashSet<>();
+        int length = 0;
+        int maxLength = 0;
+        for(int num:nums){
+            set.add(num);
+        }
+        for(int num:set){
+            int current = num;
+            if(!set.contains(current-1)){
+                length = 1;
+                while(set.contains(current+1)){
+                    length++;
+                    current++;
+                }
+                 maxLength = Math.max(maxLength,length);
+            }
+        }
+        return maxLength;
+    }
+}

@@ -1,0 +1,37 @@
+LeetCode 11: Container With Most Water
+//Clarifying Questions
+//Can the input array be empty?
+//Should I return the maximum area?
+//Can height contain zero?
+
+//Approach
+//I will solve this using Two Pointers
+//At each step, I calculate the area using the current left & right lines
+//The width is right - left
+//The height is limited by the shorter line
+//Then I move the pointer at the shorter line because moving the taller line cannot increase the height
+
+//Time Complexity: O(N)
+//Space Complexity: O(1)
+
+class Solution {
+    public int maxArea(int[] height) {
+        if(height==null || height.length==0)return 0;
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+        while(left < right){
+            int width = right - left;
+            int ht = Math.min(height[right],height[left]);
+            int area = width * ht;
+            maxArea = Math.max(area,maxArea);
+            if(height[left] < height[right]){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+        return maxArea;
+    }
+}

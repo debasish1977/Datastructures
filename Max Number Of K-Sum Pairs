@@ -1,0 +1,34 @@
+LeetCode - 1679 -- Max Number Of K-Sum Pairs
+//Clarifying Questions
+//Only +ve integers?
+//Return the maximum no of operations I can perform on the array?
+//Input array can be empty?
+
+//Approach
+//I will solve this using Two Sum/Pair Matching pattern
+//For each element, I will calculate the complement and check if the complement exists in the HashMap
+//If yes, I will increment the operations count and decrement the total count of the complement in the map
+//Else I will put the complement in the map
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
+
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        if(nums==null || nums.length < 2)return 0;
+        int operations = 0;
+        HashMap<Integer,Integer> freqMap = new HashMap<Integer,Integer>();
+        for(int num:nums){
+            int complement = k - num;
+            if(freqMap.getOrDefault(complement,0) > 0){
+                operations++;
+                freqMap.put(complement,freqMap.get(complement) - 1);
+            }
+            else{
+                freqMap.put(num,freqMap.getOrDefault(num,0)+1);
+            }
+            
+        }
+        return operations;       
+    }
+}

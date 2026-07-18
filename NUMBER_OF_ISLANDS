@@ -1,0 +1,46 @@
+//Clarifying Questions
+// Grid contains only '1's and 0's?
+//What will we return if the Grid is empty?
+
+//Approach
+//I will solve this using Flood Fill DFS
+//Whenever I find a land cell, I count it as new island and run DFS to mark the entire connected 
+//component as visited by converting land to water.
+//Each cell is visited at most once, so time complexity is O(m*n) 
+
+//Time complexity: O(m*n)
+//Space Complexity: O(m*n)
+
+class Solution {
+    public int numIslands(char[][] grid) {
+       if(grid==null || grid.length == 0)return 0;
+       int rows = grid.length;
+       int cols = grid[0].length;
+       int lengthOfIsland = 0;
+       for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            if(grid[i][j]=='1'){
+                lengthOfIsland++;
+                dfs(grid,i,j);
+            }
+           
+        }
+       }
+       return lengthOfIsland;
+   }
+
+    //Write a helper method to perform DFS
+    private void dfs(char[][] grid,int row,int col){
+        int rows = grid.length;
+        int cols = grid[0].length;
+        if(row < 0 || col < 0 || row >= rows || col >= cols || grid[row][col]=='0'){
+            return;
+        }
+        grid[row][col]='0';
+        dfs(grid,row+1,col);
+        dfs(grid,row-1,col);
+        dfs(grid,row,col+1);
+        dfs(grid,row,col-1);
+    }
+       
+}
