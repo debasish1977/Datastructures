@@ -1,0 +1,50 @@
+LeetCode 207 - Course Schedule
+//Clarifying Questions
+//Are questions labeled from 0 to numCourses - 1?
+//Does each prerequisite [a,b] means to take course a, I need to take course b first?
+//Can prerequisites be empty?
+
+//Approach
+//I will solve this using Topological Sort using BFS/Kahn's algorithm
+//If there is a cycle, we cant finish the course
+
+//Time complexity: O(V+E)
+//Space Complexity: O(V+E)
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> graph = new ArrayList<>();
+        int[] indegree = new int[numCourses];
+        for(int i=0;i<numCourses;i++){
+            graph.add(new ArrayList<>());
+        }
+
+        for(int[] pre:prerequisites){
+            int course = pre[0];
+            int prereq = pre[1];
+            graph.get(prereq).add(course);
+            indegree[course]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0;i<numCourses;i++){
+            if(indegree[i]==0){
+                queue.offer(i);
+            }
+        }
+
+        int completedCourses = 0;
+        while(!queue.isEmpty()){
+            int current = queue.poll();
+            completedCourses++;
+            for(int nextCourse:graph.get(current)){
+                indegree[nextCourse]--;
+                if(indegree[nextCourse]==0){
+                    queue.offer(nextCourse);
+                }
+            }
+        }
+        return numCourses == completedCourses;
+        
+    }
+}

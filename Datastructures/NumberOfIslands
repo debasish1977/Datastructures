@@ -1,0 +1,44 @@
+Leetcode 200 -- Number of Islands
+//Clarifying Question
+//Grid contains only '1's & '0's
+//Grid can be empty?
+//Are islands connected only horizontally or vertically and not diagonally?
+//Can I mutate the input grid?
+
+//Approach
+//I will do this using Flood Fill DFS
+//I scan every cell in the grid. When I find land '1', means I discovered new island, so I increment the count
+//Then I run DFS to mark the entire connected component as Visited by changing '1' to '0'
+//This prevents counting the same island again
+//Since every cell is visited atleast once the time complexity is O(m*n)
+
+//Time Complexity: Since every cell is visited at most once, time complexity is O(rows * cols)
+//Space Complexity: O(rows * cols) due to resursion stack
+
+class Solution {
+    public int numIslands(char[][] grid) {
+        if(grid==null || grid.length==0) return 0;
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int numOfIslands = 0;
+        for(int r=0;r < rows;r++){
+            for(int c=0; c < cols;c++){
+               if(grid[r][c]=='1'){
+                 numOfIslands++;
+                 dfs(grid,r,c);
+               }
+            }
+        }
+        return numOfIslands;
+    }     
+
+    //Helper method to perform DFS
+    public void dfs(char[][] grid,int row,int col){
+        if(row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col]=='0') return;
+        grid[row][col] ='0';
+        dfs(grid,row+1,col);
+        dfs(grid,row-1,col);
+        dfs(grid,row,col+1);
+        dfs(grid,row,col-1);
+    }
+}

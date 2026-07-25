@@ -1,0 +1,48 @@
+LeetCode 347: Top K Frequent Elements
+//Clarifying questions
+//Input array can contain duplicate elements?
+//Input array can be empty?
+//Is K always valid(1 <=k <=number of unique elements)
+//Can I return the result in any order?
+
+//Approach
+//I will solve this using Bucket Sort & HashMap Approach
+//I first count the frequency of every number using HashMap
+//Then I create buckets where the index represents the frequency
+//and each bucket stores the numbers with that frequency
+//Finally iterate from the highest frequency bucket downward untill I have collected the top K elements
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
+
+class Solution {
+   public int[] topKFrequent(int[] nums,int k){
+      if(nums==null || nums.length==0)return new int[0];
+      List<Integer>[] buckets = new ArrayList[nums.length + 1];
+      HashMap<Integer,Integer> freqMap = new HashMap<>();
+      for(int num : nums){
+        freqMap.put(num,freqMap.getOrDefault(num,0)+1);
+      }
+
+      for(int i=0;i<=nums.length;i++){
+        buckets[i] = new ArrayList<>();
+      }
+
+      for(Map.Entry<Integer,Integer> entry:freqMap.entrySet()){
+        int key = entry.getKey();
+        int value = entry.getValue();
+        buckets[value].add(key);
+
+      }
+
+      int idx = 0;
+      int[] result = new int[k];
+      for(int i=buckets.length - 1;i>=0 && idx < k;i--){
+        for(int val:buckets[i]){
+            result[idx++]=val;
+            if(idx ==k) break;
+        }
+      }
+      return result;
+   }
+}

@@ -1,0 +1,28 @@
+LeetCode 560: Subarray Sum Equals K
+//Clarifying questions
+//Can the array contain negative integers?
+//Can k be negative or zero?
+
+//Approach
+//I will solve this using HashMap and prefix Sum approach
+//I will maintain a running prefix sum and a frequency map of all frequency sums seen before the current position
+
+//Time complexity: O(N)
+//Space Complexity: O(N)
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums==null || nums.length==0)return 0;
+        HashMap<Integer,Integer> prefixMap = new HashMap<Integer,Integer>();
+        prefixMap.put(0,1);
+        int runningSum = 0;
+        int count = 0;
+        for(int num:nums){
+            runningSum += num;
+            int requiredPrefix = runningSum - k;
+            count+= prefixMap.getOrDefault(requiredPrefix,0);
+            prefixMap.put(runningSum,prefixMap.getOrDefault(runningSum,0)+1);
+        }
+        return count;
+    }
+}

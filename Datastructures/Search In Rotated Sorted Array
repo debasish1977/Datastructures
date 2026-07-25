@@ -1,0 +1,51 @@
+Leetcode 33 - Search In Rotated Sorted Array
+
+//Clarifying Questions
+//Input array contains only unique elements?
+//Nums is an ascending array, that is possibly self rotated?
+//Input array can be empty?
+
+//Approach
+//I will solve this using binary search
+//At every iteration, atleast one half of the rotated array is guranteed to be sorted
+//I identify the sorted half and try to find if the target lies within that range.
+//If it does then discard the other half, otherwise I search in the unsorted half
+//This preserves the binary search invariant and reduces the search space by half each iteration
+
+//Time Complexity: O(logN)
+//Space Complexity: O(1)
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums==null || nums.length ==0) return -1;
+        int left = 0;
+        int right = nums.length - 1;
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            //If left half is sorted
+            if(nums[left] <= nums[mid]){
+                if(nums[left] <= target && target < nums[mid]){
+                    right = mid - 1;
+                }
+                else{
+                    left = mid + 1;
+                }
+            }
+
+            //if right half is sorted
+            else{
+                if(nums[mid] < target && target <= nums[right]){
+                   left = mid + 1;
+               }
+               else{
+                  right = mid - 1;
+               }
+            }
+        }
+        return -1;
+    }
+}

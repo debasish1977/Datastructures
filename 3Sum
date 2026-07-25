@@ -1,0 +1,49 @@
+Leetcode 15: 3Sum
+//Clarifying questions
+//Can the array contain duplicate numbers?
+//Should the output contain only unique triplets?
+//Can the array be empty or have fewer than three elements?
+//Input array can be empty?
+//Can numbers be positive, negative or zero?
+
+//Approach
+//I will first sort the array. Then I will fix one element
+//& use two pointers to search the remaining two numbers
+//Since the array is sorted I can move the left pointer
+//where the sum is too small and the right pointer when its too large
+//I will skip duplicate values for both the fixed element and two pointer
+//to ensure only unique triplets are returned
+
+//Time Complexity: O(N^2)
+//Space Complexity: O(N)
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums){
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums==null || nums.length < 3)return result;
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int i=0;i<nums.length - 2;i++){
+            if(i >0 && nums[i]==nums[i-1])continue;
+            int left = i + 1;
+            int right = nums.length - 1;
+            while(left < right){
+                sum = nums[i] + nums[left] + nums[right];
+                if(sum == 0){
+                    result.add(Arrays.asList(nums[i],nums[left],nums[right]));
+                    while(left < right && nums[left] == nums[left+1])left++;
+                    while(left < right && nums[right] == nums[right-1])right--;
+                    left++;
+                    right--;
+                }
+                else if(sum < 0){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+            }
+        }
+        return result;
+    }
+ }

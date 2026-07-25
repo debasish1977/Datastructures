@@ -1,0 +1,43 @@
+LeetCode 658: Find Closest Elements
+
+//Clarifying Questions
+//Is the array sorted?
+//Can the array contain duplicates?
+//If two numbers are equally closer to x, should we prefer the smaller number?
+//Should the final result be sorted?
+//Can K be 0 or greater then array length?
+
+//Approach
+//I will use two pointers to solve this
+//Since the array is sorted, the answer must be a contiguous array of size k
+//I start with full array and repeatedly remove the further endpoint
+//If both the end points are equally close, then I will remove the right endpoint 
+//to keep the smaller values
+
+//Time Complexity: O(N)
+//Space Complexity: O(1)
+
+
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        List<Integer> result = new ArrayList<>();
+        if(arr==null || arr.length==0 || k==0) return result;
+        int left = 0;
+        int right = arr.length - 1;
+        while(right - left + 1 > k){
+            int leftDiff = Math.abs(arr[left] - x);
+            int rightDiff = Math.abs(arr[right] - x);
+            if(leftDiff <= rightDiff){
+                right--;
+            }
+            else{
+                left++;
+            }
+        }
+        for(int i=left;i<=right;i++){
+            result.add(arr[i]);
+        }
+        return result;
+        
+    }
+}

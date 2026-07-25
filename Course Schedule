@@ -1,0 +1,56 @@
+LeetCode 207 - Course Schedule
+
+//Clarifying Questions
+//Can prerequisites contain duplicate edges?
+//Can there be disconnected components?
+//Can prerequisites be empty?
+//Can there be self dependencies like [1,1]
+//Should I return false if cycle exists?
+
+//Approach
+//I model the prerequisites as Directed Graph and compute each courses indegree
+//Courses with indegree zero have no remaining prerequisites, so I enqueue them
+//During BFS each processed course reduces the indegree of its dependent courses
+//If a dependent courses indegree reaches zero, it becomes eligible to take next
+//If I process all courses the graph is acyclic and all courses can be completed.
+//If some courses remain unprocessed, they must belong to a cycle
+
+//Time Complexity: O(V+E)
+//Space Complexity: O(V+E)
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for(int i=0;i<numCourses;i++){
+           graph.add(new ArrayList<>());
+        }
+
+        //Calculate the indegree
+        int[] indegree = new int[numCourses];
+        for(int[] edge : prerequisites){
+            int course = edge[0];
+            int prereq = edge[1];
+            graph.get(prereq).add(course);
+            indegree[course]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0;i<numCourses;i++){
+            if(indegree[i]==0){
+                queue.offer(i);
+            }
+        }
+        int completed = 0;
+        while(!queue.isEmpty()){
+            int current = queue.poll();
+            completed++;
+            for(int neighbor:graph.get(current)){
+                indegree[neighbor]--;
+                if(indegree[neighbor]==0){
+                    queue.offer(neighbor);
+                }
+            }
+        }
+        return completed == numCourses;
+    }
+}

@@ -1,0 +1,57 @@
+Leetcode 199: Binary Tree Right Side View
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+//Clarifying Questions
+//Tree Contains only +ve integers?
+//Can the tree be empty?
+//Should I order the nodes visible from left to right side, ordered from top to bottom?
+//Is the tree guranteed to be a Binary tree?
+
+//Approach
+//I will perform BFS level Order traversal using a queue. At the beginning of each iteration, the queue size
+//represents the no of nodes at the current level. I will process exactly those nodes, enqueue their children
+//to the next level and record the value of the last node processed, since the node is visible from the right side
+
+//Time Complexity: O(N)
+//Space Complexity: O(w)
+
+
+class Solution {
+    //BFS Level order
+    public List<Integer> rightSideView(TreeNode root){
+        List<Integer> result = new ArrayList<>();
+        if(root==null) return result;
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                TreeNode temp = queue.poll();
+                if(i == size - 1){
+                    result.add(temp.val);
+                }
+                if(temp.left != null){
+                    queue.offer(temp.left);
+                }
+                if(temp.right !=null){
+                    queue.offer(temp.right);
+                }
+            }
+        }
+        return result;
+    }
+}
