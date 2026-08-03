@@ -1,33 +1,34 @@
-//Clarifying questions
-//Can the array be null or fewer then two elements?
-//Are heights non negative integers?
-//Should I return 0 when no container can be formed?
-//Can the calculated area exceed the integer range?
+//Clarifying Questions
+//Can the input be null or contain fewer than two elements?
+//Are all heights non-negative integers?
+//Should I return the maximum area rather than the two indices?
+//Are there constraints large enough that integer overflow is possible?
 
 //Approach
-//I will start with the widest possible container using the first and last lines.
-//The area is constrained by the shorter of the
-//two heights. Moving the taller line cannot improve the area because the
-//width decreases while the limiting height cannot
-//increase. Therefore, I move the shorter pointer inward, which is the only move
-//that may discover a taller limiting boundary.
+//I will use two pointers, initially placed at the two ends of the array. The area is determined by the distance between the
+//pointers and the shorter of the two heights. After calculating the current area, I move the pointer with the
+//shorter height inward. Moving the taller pointer cannot improve the area because the width decreases while the
+//shorter height still limits the container. This allows us to eliminate one candidate on every iteration.
 
 //Time Complexity: O(N)
-//Space Complexity: O(1)
-package Two_Pointers;
+//Space Complexity: O(N)
 
-class Container_With_Most_Water {
+
+class Solution {
     public int maxArea(int[] height) {
-        if(height==null || height.length==0) return 0;
+        if(height==null || height.length < 2)
+        {
+            return 0;
+        }
         int left = 0;
         int right = height.length - 1;
         int maxArea = 0;
-        while(left < right) {
+        while(left < right){
+            int ht = Math.min(height[left],height[right]);
             int width = right - left;
-            int ht = Math.min(height[right],height[left]);
-            int area = width * ht;
-            maxArea = Math.max(area,maxArea);
-            if(height[left] < height[right]){
+            int area = ht*width;
+            maxArea = Math.max(maxArea,area);
+            if(height[left]<height[right]){
                 left++;
             }
             else {
