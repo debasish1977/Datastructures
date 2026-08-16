@@ -13,6 +13,15 @@
 //Space Complexity: O(n*k)
 package Hashing;
 
+//Clarifying questions
+//The String consists of lowercase english letters?
+//The String can be empty?
+
+//Approach
+//I will solve this using HashMap and character frequency array
+
+//Time Complexity: O(n*k)
+//Space Complexity: O(n*k)
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,19 +31,20 @@ public class GroupAnagrams {
         List<List<String>> result = new ArrayList<>();
         if(strs==null || strs.length==0) return result;
         HashMap<String,List<String>> freqMap = new HashMap<>();
+        List<String> resultList = new ArrayList<String>();
         for(String str:strs){
             int[] freq = new int[26];
-            for(char ch:str.toCharArray()){
+            for(char ch:str.toCharArray()) {
                 freq[ch-'a']++;
             }
             StringBuilder strBuild = new StringBuilder();
-            for(int i=0;i<26;i++){
+            for(int count:freq){
                 strBuild.append('#');
-                strBuild.append(freq[i]);
+                strBuild.append(count);
             }
             String key = strBuild.toString();
             if(!freqMap.containsKey(key)){
-                freqMap.put(key,new ArrayList<>());
+                freqMap.put(key,new ArrayList<String>());
             }
             freqMap.get(key).add(str);
         }
