@@ -1,29 +1,18 @@
 package Hashing;
-//Clarifying questions
-//The input array contains both +ve & -ve integers?
-//Return exactly one solution?
-//May not use the same element twice?
-//Return the answer in any order?
-//What should I return, if no solution exists?
-
-//Approach
-//I will solve this using hashMap & complement approach
-
-//Time Complexity: O(N)
-//Space Complexity: O(N)
 
 import java.util.HashMap;
 
-class Solution {
+public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
+        if(nums==null || nums.length==0)return new int[0];
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         int complement = 0;
-        HashMap<Integer,Integer> seen = new HashMap<Integer,Integer>();
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
-            if(seen.containsKey(complement)){
-                return new int[] {seen.get(complement),i};
+            if(map.containsKey(complement)){
+                return new int[] {map.get(complement),i};
             }
-            seen.put(nums[i],i);
+            map.put(nums[i],i);
         }
         return new int[0];
     }
