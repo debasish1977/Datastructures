@@ -1,12 +1,12 @@
 package Hashing;
 
+import java.util.HashSet;
+import java.util.Set;
+
 //Clarifying questions
-//Will the array contain both +ve & negative integers?
-//Can the array be empty?
-//Can nums be null or empty?
-//Can the array contain duplicates?
-//Do we need to return only the length or the actual sequence?
-//Are we targetting O(N) expected time as required by the problem?
+//Can the input contain duplicates?
+//Can the array contain negative numbers?
+//Can the input be null or empty?
 
 //Approach
 //I will solve this using HashSet
@@ -14,11 +14,7 @@ package Hashing;
 //Time Complexity: O(N)
 //Space Complexity: O(N)
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
-public class LongestConsecutiveSequence {
+public class LongestConsecutive {
     public int longestConsecutive(int[] nums) {
         if(nums==null || nums.length==0)return 0;
         Set<Integer> freqSet = new HashSet<>();
