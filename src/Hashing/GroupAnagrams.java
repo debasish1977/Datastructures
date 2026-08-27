@@ -27,25 +27,24 @@ package Hashing;
 //Time Complexity: O(m*n)
 //Space Complexity: O(m*n)
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs){
         List<List<String>> result = new ArrayList<>();
-        if(strs==null || strs.length==0)return result;
-        HashMap<String,List<String>> anagramMap = new HashMap<>();
+        if(strs==null || strs.length==0)return new ArrayList<>();
+        HashMap<String,List<String>> groups = new HashMap<>();
         for(String str:strs){
-            int[] freq = new int[26];
-            for(char ch:str.toCharArray()){
-                freq[ch-'a']++;
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String Key = new String(chars);
+            if(!groups.containsKey(Key)){
+                groups.put(Key,new ArrayList<>());
             }
-            StringBuilder strBuild = new StringBuilder();
-            for(int count:freq){
-                strBuild.append('#').append(count);
-            }
-            anagramMap.computeIfAbsent(strBuild.toString(),k->new ArrayList<>()).add(str);
+            groups.get(Key).add(str);
         }
-        return new ArrayList<>(anagramMap.values());
+        return new ArrayList<>(groups.values());
     }
 }
