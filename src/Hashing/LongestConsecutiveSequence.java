@@ -21,19 +21,18 @@ import java.util.Set;
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
         if(nums==null || nums.length==0)return 0;
-        Set<Integer> freqSet = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
         int longest = 0;
         for(int num:nums){
-            freqSet.add(num);
+            set.add(num);
         }
-        for(int num:freqSet)
-        {
-            if(!freqSet.contains(num-1)){
+        for(int num:set){
+            if(!set.contains(num-1)){
                 int current = num;
                 int length = 1;
-                while(freqSet.contains(current+1)){
-                    current++;
+                while(set.contains(current+1)){
                     length++;
+                    current++;
                 }
                 longest = Math.max(longest,length);
             }

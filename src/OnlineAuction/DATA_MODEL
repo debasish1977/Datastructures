@@ -1,0 +1,46 @@
+CREATE TABLE users (
+    user_id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(320) NOT NULL UNIQUE,
+    status VARCHAR(30) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+
+CREATE TABLE items (
+    item_id BIGSERIAL PRIMARY KEY,
+    seller_id BIGINT NOT NULL REFERENCES users(user_id),
+
+    title VARCHAR(500) NOT NULL,
+    description TEXT,
+    condition VARCHAR(30),
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE auctions (
+    auction_id BIGSERIAL PRIMARY KEY,
+
+    item_id BIGINT NOT NULL REFERENCES items(item_id),
+    seller_id BIGINT NOT NULL REFERENCES users(user_id),
+
+    starting_price NUMERIC(19, 2) NOT NULL,
+    current_price NUMERIC(19, 2) NOT NULL,
+
+    highest_bid_id BIGINT,
+    highest_bidder_id BIGINT REFERENCES users(user_id),
+
+    start_time TIMESTAMPTZ NOT NULL,
+    end_time TIMESTAMPTZ NOT NULL,
+
+    status VARCHAR(30) NOT NULL,
+
+    version BIGINT NOT NULL DEFAULT 0,
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
+    CHECK (starting_price >= 0),
+    CHECK (current_price >= starting_price),
+    CHECK (end_time > start_time)
+);
