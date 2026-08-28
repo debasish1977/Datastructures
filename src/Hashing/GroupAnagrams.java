@@ -34,17 +34,25 @@ import java.util.List;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs){
         List<List<String>> result = new ArrayList<>();
-        if(strs==null || strs.length==0)return new ArrayList<>();
-        HashMap<String,List<String>> groups = new HashMap<>();
+        if(strs==null || strs.length==0)return result;
+        HashMap<String,List<String>> map = new HashMap<>();
         for(String str:strs){
-            char[] chars = str.toCharArray();
-            Arrays.sort(chars);
-            String Key = new String(chars);
-            if(!groups.containsKey(Key)){
-                groups.put(Key,new ArrayList<>());
+            int[] freq = new int[26];
+            for(int i=0;i<str.length();i++){
+                char ch = str.charAt(i);
+                freq[ch-'a']++;
             }
-            groups.get(Key).add(str);
+            StringBuffer strBuff = new StringBuffer();
+            for(int i=0;i<26;i++){
+                strBuff.append('#');
+                strBuff.append(freq[i]);
+            }
+            String key = strBuff.toString();
+            if(!map.containsKey(key)){
+                map.put(key,new ArrayList<>());
+            }
+            map.get(key).add(str);
         }
-        return new ArrayList<>(groups.values());
+        return new ArrayList<>(map.values());
     }
 }
