@@ -24,6 +24,9 @@ import java.util.Arrays;
 //Time Complexity: O(N2)
 //Space Complexity: O(1)
 
+//Leetcode link: https://leetcode.com/problems/3sum/description/?envType=company&envId=apple&favoriteSlug=apple-all
+
+
 public class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums){
         List<List<Integer>> result = new ArrayList<>();
