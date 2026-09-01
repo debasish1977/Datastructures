@@ -21,22 +21,22 @@ import java.util.Set;
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
         if(nums==null || nums.length==0)return 0;
-        HashSet<Integer> set = new HashSet<Integer>();
+        HashSet<Integer> set = new HashSet<>();
         int longest = 0;
         for(int num:nums){
             set.add(num);
         }
-        for(int ele:set){
-            //Only start counting if num is the beginning of a sequence
-            if(!set.contains(ele - 1)){
+        for(int element:set){
+            if(!set.contains(element-1)){
                 int length = 1;
-                int current = ele;
-                while(set.contains(current + 1)){
-                    current++;
+                int current = element;
+                while(set.contains(current+1)){
                     length++;
+                    current++;
                 }
                 longest = Math.max(longest,length);
             }
+
         }
         return longest;
     }
