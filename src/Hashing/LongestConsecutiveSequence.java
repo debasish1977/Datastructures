@@ -26,7 +26,7 @@ public class LongestConsecutiveSequence {
             elementSet.add(num);
         }
         for(int element:elementSet){
-            if(elementSet.contains(element)){
+            if(!elementSet.contains(element-1)){
                 int num = element;
                 int length = 1;
                 while(elementSet.contains(num+1)){
