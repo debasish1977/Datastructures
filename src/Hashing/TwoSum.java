@@ -20,11 +20,10 @@ import java.util.HashMap;
 Leet code link:  https://leetcode.com/problems/two-sum/?envType=company&envId=apple&favoriteSlug=apple-all
 */
 
-//Clarifying Questions
+//Clarifying questions
 //The input array can contain both +ve & -ve integers?
-//Each input should have exactly one solution?
-//Return the answer in any order?
-//Input array can be empty?
+//The input array can be empty?
+//Exactly one solution?
 
 //Approach
 //I will solve this using HashMap & by calculating complement
@@ -41,14 +40,14 @@ Leet code link:  https://leetcode.com/problems/two-sum/?envType=company&envId=ap
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         if(nums==null || nums.length==0)return new int[0];
-        HashMap<Integer,Integer> freqMap = new HashMap<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
         int complement = 0;
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
-            if(freqMap.containsKey(complement)){
-                return new int[] {freqMap.get(complement),i};
+            if(map.containsKey(complement)){
+                return new int[] {map.get(complement),i};
             }
-            freqMap.put(nums[i],i);
+            map.put(nums[i],i);
         }
         return new int[0];
     }
