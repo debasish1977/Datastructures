@@ -1,18 +1,17 @@
 package Hashing;
 
-//Clarifying questions
-//Will the array contain both +ve & negative integers?
-//Can the array be empty?
-//Can nums be null or empty?
-//Can the array contain duplicates?
-//Do we need to return only the length or the actual sequence?
-//Are we targetting O(N) expected time as required by the problem?
+//Clarifying Questions
+//The input array contains both +ve & -ve integers?
+//The input array can be empty?
 
 //Approach
-//I will solve this using HashSet
+/* I'll first insert every number into a HashSet so I can perform expected O(1) membership checks.
+Then I'll iterate through the unique numbers. I only start counting a sequence when num - 1 is not present,
+which means num is the beginning of a consecutive sequence. From there, I'll repeatedly check num + 1, num + 2,
+and so on. Since each sequence is expanded exactly once, the total expected runtime is O(N), with O(N) additional space. */
 
-//Time Complexity: O(N)
-//Space Complexity: O(N)
+//Time complexity: O(N)
+//Space complexity: O(N)
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,23 +20,23 @@ import java.util.Set;
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
         if(nums==null || nums.length==0)return 0;
-        HashSet<Integer> set = new HashSet<>();
-        int longest = 0;
+        HashSet<Integer> elementSet = new HashSet<>();
+        int maxLen = 0;
         for(int num:nums){
-            set.add(num);
+            elementSet.add(num);
         }
-        for(int element:set){
-            if(!set.contains(element-1)){
+        for(int element:elementSet){
+            if(elementSet.contains(element)){
+                int num = element;
                 int length = 1;
-                int current = element;
-                while(set.contains(current+1)){
+                while(elementSet.contains(num+1)){
                     length++;
-                    current++;
+                    num++;
                 }
-                longest = Math.max(longest,length);
+                maxLen = Math.max(maxLen,length);
             }
 
         }
-        return longest;
+        return maxLen;
     }
 }

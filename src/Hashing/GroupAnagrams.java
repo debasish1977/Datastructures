@@ -14,16 +14,15 @@
 package Hashing;
 
 //Clarifying Questions
-//The input array consists of only lowercase english letters?
-//Return the answer in any order?
+//Can the input array be empty?
+//Input array can contain only lowercase english letters?
 
 //Approach
-//I will solve this using HashMap and frequency Array
-//I will iterate throguh the input string and calculate and store the index of characters into the frequency array
+//For each string, I'll build a 26-element character-frequency vector. All anagrams have exactly the same frequency vector,
+//so I'll serialize that vector into a canonical key and use it to group strings in a hash map.
 
-
-//Time Complexity: O(m*n)
-//Space Complexity: O(m*n)
+//Time Complexity: O(M*N)
+//Space Complexity: O(M*N)
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,10 +36,10 @@ public class GroupAnagrams {
         for(String str:strs){
             int[] freq = new int[26];
             for(int i=0;i<str.length();i++){
-                freq[str.charAt(i) -'a']++;
+                freq[str.charAt(i)-'a']++;
             }
             StringBuilder strBuild = new StringBuilder();
-            for(int i=0;i<freq.length;i++){
+            for(int i=0;i<26;i++){
                 strBuild.append('#');
                 strBuild.append(freq[i]);
             }
