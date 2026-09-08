@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+//Clarifying Questions
+//Can the input array be empty?
+//Input array can contain only lowercase english letters?
+
+//Approach
+//For each string, I'll build a 26-element character-frequency vector. All anagrams have exactly the same frequency vector,
+//so I'll serialize that vector into a canonical key and use it to group strings in a hash map.
+
+//Time Complexity: O(M*N)
+//Space Complexity: O(M*N)
+
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs){
         List<List<String>> result = new ArrayList<>();
