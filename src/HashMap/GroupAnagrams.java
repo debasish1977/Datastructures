@@ -15,6 +15,9 @@ import java.util.List;
 //Time Complexity: O(M*N)
 //Space Complexity: O(M*N)
 
+//Group Anagrams
+//https://leetcode.com/problems/group-anagrams/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs){
         List<List<String>> result = new ArrayList<>();
