@@ -1,24 +1,18 @@
 package HashMap;
 
 //Clarifying questions
-//The input array can contain both +ve & -ve integers?
-//Is exactly one valid pair guranteed?
-//Can I assume I cannot use the same element twice?
-//Each input eaxctly one solution?
-//Clarifying questions
-//Will the input array contain both +ve & -ve integers?
-//Can the input array be empty?
-//Will it contain exactly one solution?
-//Return the order in any order?
+//Can I assume, there is exactly one valid pair?
+//Can the same element be used more then once?
+//Should I return the indices or the values?
+//What should I return if no solution exists?
 
 //Approach
-//I will solve this using HashMap & by calculating the complement
-//I will iterate through the array and will calculate the complement
-//If the complement exists in the map then I will return true
-//Else false;
+//I will solve this using HashMap & by calculating complement
+//I will iterate through the input array and calculate the complement
+//If the complement exists in the HashMap then I will return true else will return false
 
 //Time complexity: O(N)
-//Space Complexity: O(N)
+//Space complexity: O(N)
 
 import java.util.HashMap;
 
