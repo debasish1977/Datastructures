@@ -1,4 +1,4 @@
-package Hashing;
+package HashMap;
 
 //Clarifying questions
 //Contains both +ve & -ve integers?

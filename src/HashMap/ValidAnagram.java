@@ -1,4 +1,4 @@
-package Hashing;
+package HashMap;
 
 //Clarifying Questions
 //Both strings contains only characters?

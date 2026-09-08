@@ -1,4 +1,4 @@
-package Hashing;
+package HashMap;
 
 //Clarifying questions
 //Can nums contain positive, negative & zero values?
