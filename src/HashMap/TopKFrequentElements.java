@@ -1,12 +1,19 @@
 package HashMap;
 //Clarifying questions
 //Input array can contain both +ve & -ve integers?
-//Return k most frequent elements?
-//Return the answer in any order?
+//Should I return exactly the k most frequent elements?
+//Can the result be returned in any order?
 //Input array can be empty?
+//Is k guaranteed to be valid: 1 <= k <= number of unique elements?
+//Can the input array be null or empty?
 
 //Approach
-//I will use HashMap & a bucket sort approach
+// 1. Build a frequency map: number -> frequency.
+// 2. Since an element can appear at most N times, create N + 1 buckets,
+//    where bucket[i] contains all elements that appear exactly i times.
+// 3. Populate the buckets using the frequency map.
+// 4. Traverse the buckets from highest frequency to lowest frequency
+//    and collect elements until we have k elements.
 
 //Time Complexity: O(N)
 //Space Complexity: O(N)
@@ -20,19 +27,19 @@ import java.util.Map;
 
 public class TopKFrequentElements {
     public int[] topKFrequent(int[] nums,int k){
-        if(nums==null || nums.length ==0 || k <= 0)return new int[0];
-        List<Integer>[] buckets = new List[nums.length+1];
-        HashMap<Integer,Integer> freqMap = new HashMap<>();
-        for(int i=0;i<=nums.length;i++){
-            buckets[i] = new ArrayList<>();
-        }
+        if(nums==null || nums.length==0 || k <=0) return new int[0];
 
+        HashMap<Integer,Integer> freqMap = new HashMap<>();
         for(int num:nums){
             freqMap.put(num,freqMap.getOrDefault(num,0)+1);
         }
 
+        List<Integer>[] buckets = new List[nums.length+1];
+        for(int i=0;i<=nums.length;i++){
+            buckets[i] = new ArrayList<>();
+        }
 
-        for(Map.Entry<Integer,Integer> entry: freqMap.entrySet()){
+        for(Map.Entry<Integer,Integer> entry:freqMap.entrySet()){
             int key = entry.getKey();
             int value = entry.getValue();
             buckets[value].add(key);
@@ -40,15 +47,15 @@ public class TopKFrequentElements {
 
         int[] result = new int[k];
         int index = 0;
-        for(int i=nums.length;i >= 1 && index < k;i--){
-            for(int val:buckets[i]){
-                result[index++]=val;
+        for(int i=nums.length;i >=0 && index < k;i--){
+            for(int element:buckets[i]){
+                result[index++]=element;
                 if(index==k){
                     break;
                 }
             }
+
         }
         return result;
-
     }
 }
