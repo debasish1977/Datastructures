@@ -19,19 +19,19 @@ package TwoPointers;
 //Time Complexity: O(N)
 //Space Complexity: O(1)
 
+//Container with Most water:https://leetcode.com/problems/container-with-most-water/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+
 public class ContainerWithMostWater {
     public int maxArea(int[] height) {
-        if(height==null || height.length < 2){
-            return 0;
-        }
+        if(height==null || height.length < 2)return 0;
         int left = 0;
         int right = height.length - 1;
         int maxArea = 0;
         while(left < right){
             int ht = Math.min(height[right],height[left]);
             int width = right - left;
-            int area = ht * width;
-            maxArea = Math.max(maxArea,area);
+            int area = width * ht;
+            maxArea = Math.max(area,maxArea);
             if(height[left] < height[right]){
                 left++;
             }
