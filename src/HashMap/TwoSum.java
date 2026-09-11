@@ -1,5 +1,3 @@
-package HashMap;
-
 //Clarifying questions
 //Can I assume, there is exactly one valid pair?
 //Can the same element be used more then once?
@@ -14,12 +12,16 @@ package HashMap;
 //Time complexity: O(N)
 //Space complexity: O(N)
 
+//Leetcode Link:  https://leetcode.com/problems/two-sum/?envType=company&envId=walmart-labs&favoriteSlug=walmart-labs-all
+
+package HashMap;
+
 import java.util.HashMap;
 
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         if(nums==null || nums.length==0)return new int[0];
-        HashMap<Integer,Integer> map = new HashMap<>();
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         int complement = 0;
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
