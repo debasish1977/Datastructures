@@ -10,6 +10,8 @@ package HashMap;
 //Time complexity: O(N)
 //Space complexity: O(N)
 
+//Walmart labs: https://leetcode.com/problems/longest-consecutive-sequence/description/?envType=company&envId=walmart-labs&favoriteSlug=walmart-labs-all
+
 import java.util.HashSet;
 
 public class LongestConsecutiveSequence {
