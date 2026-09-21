@@ -19,16 +19,15 @@ import java.util.HashMap;
 public class Longest_Substring_Without_Repeating_Characters {
     public int lengthOfLongestSubstring(String s) {
         if(s==null || s.length()==0)return 0;
-        HashMap<Character,Integer> lastSeen = new HashMap<Character,Integer>();
+        HashMap<Character,Integer> lastSeen = new HashMap<>();
         int left = 0;
         int maxLen = 0;
         for(int right=0;right<s.length();right++){
-            char ch = s.charAt(right);
-            if(lastSeen.containsKey(ch))
-            {
-                left = Math.max(left,lastSeen.get(ch)+1);
+            char current = s.charAt(right);
+            if(lastSeen.containsKey(current)){
+                left = Math.max(left,lastSeen.get(current)+1);
             }
-            lastSeen.put(ch,right);
+            lastSeen.put(current,right);
             maxLen = Math.max(maxLen,right-left+1);
         }
         return maxLen;

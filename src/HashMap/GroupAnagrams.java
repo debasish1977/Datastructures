@@ -20,7 +20,7 @@ import java.util.List;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs){
         List<List<String>> result = new ArrayList<>();
-        if(strs==null || strs.length==0)return result;
+        if(strs==null || strs.length ==0)return result;
         HashMap<String,List<String>> map = new HashMap<>();
         for(String str:strs){
             int[] freq = new int[26];
@@ -37,8 +37,9 @@ public class GroupAnagrams {
             if(!map.containsKey(key)){
                 map.put(key,new ArrayList<>());
             }
-            map.get(key).add(str);
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
         }
-        return new ArrayList<>(map.values());
+        result.addAll(map.values());
+        return result;
     }
 }
