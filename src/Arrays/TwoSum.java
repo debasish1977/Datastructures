@@ -23,14 +23,14 @@ import java.util.HashMap;
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         if(nums==null || nums.length==0)return new int[0];
-        HashMap<Integer,Integer> freqMap = new HashMap<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
         int complement = 0;
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
-            if(freqMap.containsKey(complement)){
-                return new int[] {freqMap.get(complement),i};
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement),i};
             }
-            freqMap.put(nums[i],i);
+            map.put(nums[i],i);
         }
         return new int[0];
     }
