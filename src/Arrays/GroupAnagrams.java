@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/group-anagrams/?envType=company&envId=apple&favoriteSlug=apple-all
+
 package Arrays;
 
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ public class GroupAnagrams {
             }
 
             HashMap<String, List<String>> map = new HashMap<>();
-
             for (String str : strs) {
                 int[] freq = new int[26];
 
