@@ -1,5 +1,7 @@
 package Arrays;
 
+//https://leetcode.com/problems/longest-consecutive-sequence/?envType=company&envId=apple&favoriteSlug=apple-all
+
 //Clarifying Questions
 //Input elements can be both +ve and -ve
 //Input array can be empty?
@@ -18,6 +20,9 @@ package Arrays;
 //That tells me the current number is the beginning of a consecutive sequence.
 //From there, I would keep checking num + 1, num + 2, and so on, until the sequence ends.
 //I would track the maximum sequence length and return it."
+
+//Time Complexity: O(N)
+//Space Complexity: O(N)
 
 
 import java.util.HashSet;
