@@ -1,5 +1,7 @@
 package Apple_Prep.Arrays;
 
+//https://algomaster.io/practice/dsa/two-sum
+
 //Clarifying questions
 //Are we guranteed exactly one valid pair?
 //Must the indeces be distinct?
