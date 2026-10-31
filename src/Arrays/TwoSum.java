@@ -2,20 +2,20 @@ package Arrays;
 //URL: https://leetcode.com/problems/two-sum/?envType=company&envId=walmart-labs&favoriteSlug=walmart-labs-all
 //URL: https://leetcode.com/problems/two-sum/submissions/2179598695/?envType=company&envId=apple&favoriteSlug=apple-all
 
-//Clarifying Questions
-//The input array can contain both +ve & -ve integers?
-//Each input should have exactly one solution?
-//Return the answer in any order?
+//Clarifying questions
+//Input array can contain both +ve & -ve integers?
 //Input array can be empty?
+//Is exactly one valid solution guranteed?
+//Can the array contain duplicate values?
+//Can I use the same elements twice?
+//Should I return indices or values?
 
 //Approach
-//I will solve this using HashMap & by calculating complement
-//I will use a HashMap mapping each previously see number to its index.
-//For each element nums[i], I will calculate target - nums[i].
-//If that complement has already been seen, I have found the pair
-//& return the stored index & i.
-//Otherwise I store the current value and its index and continue.
-//This gives O(N) expected time and O(N) space
+//I will use a one pass HashMap to store each previously visited number and its index.
+//For every element, I will calculate the complement required to reach the target
+//If the complement exists in the HashMap, I will return the stored index and the current index
+//Otherwise I will use the current element to HashMap
+//By checking before inserting, I will make sure I will not use the same element twice
 
 //Time Complexity: O(N)
 //Space Complexity: O(N)
