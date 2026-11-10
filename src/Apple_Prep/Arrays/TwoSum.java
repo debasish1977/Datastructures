@@ -1,19 +1,16 @@
 package Apple_Prep.Arrays;
-
-//https://algomaster.io/practice/dsa/two-sum
-
-//Clarifying questions
-//Are we guranteed exactly one valid pair?
-//Must the indeces be distinct?
-//Should I return if no valid pair exists?
-
+//Clarifying Questions
+//Can the array contains negative numbers, zero & duplicates?
+//Is exactly one valid solution guranteed?
+//Can the array be empty or null?
+//The input array contains both +ve & -ve integers
+//The input array can be empty or null?
+//Exactly one solution?
 
 //Approach
-//I will solve this using HashMap and by calculating remainders
-//I will iterate through the input array and try to calculate the remainders
-//I will check if the remainders exist in the HashMap
-//If the remainder exists in the HashMap, then I will return the indcies
-//Else, I will keep populating in the HashMap
+//I will iterate through the input elements and try to find the complement
+//If the complement exists in the HashMap, then I will return the index
+//Else, I will keep updating the HashMap
 
 //Time Complexity: O(N)
 //Space Complexity: O(N)
@@ -22,13 +19,13 @@ import java.util.HashMap;
 
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        if(nums==null || nums.length < 2)return new int[0];
-        int complement = 0;
+        if(nums==null || nums.length==0)return new int[0];
         HashMap<Integer,Integer> map = new HashMap<>();
+        int complement = 0;
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
             if(map.containsKey(complement)){
-                return new int[] {map.get(complement),i};
+                return new int[]{map.get(complement),i};
             }
             map.put(nums[i],i);
         }
