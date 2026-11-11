@@ -1,9 +1,7 @@
 package Apple_Prep.Arrays;
 
 //Clarifying questions
-//Are all strings lowercase english letters?
-//Can the input contain empty strings or duplicate strings?
-//Does the output ordering matter?
+//The input array can contain both +ve & -ve integers?
 //The input array can be empty?
 
 //Approach
@@ -28,11 +26,15 @@ public class GroupAnagrams {
         HashMap<String,List<String>> map = new HashMap<>();
         for(String str:strs){
             int[] freq = new int[26];
-            for(int i=0;i<str.length();i++){
-                char ch = str.charAt(i);
+            StringBuilder strBuild = new StringBuilder();
+            for(char ch:str.toCharArray()){
                 freq[ch-'a']++;
             }
-            String key = Arrays.toString(freq);
+            for(int count:freq){
+                strBuild.append('#');
+                strBuild.append(count);
+            }
+            String key = strBuild.toString();
             if(!map.containsKey(key)){
                 map.put(key,new ArrayList<>());
             }
