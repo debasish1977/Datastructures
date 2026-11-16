@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.WALMART;
+package COMPANY_WISE_PROBLEMS;
 
 //Clarifying questions
 //Are we guranteed exactly one valid pair?

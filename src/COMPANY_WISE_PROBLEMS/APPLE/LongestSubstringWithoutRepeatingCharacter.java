@@ -1,4 +1,4 @@
-package Apple_Prep.Arrays;
+package COMPANY_WISE_PROBLEMS.APPLE;
 
 //Clarifying questions
 //Will the string contain lowercase english letters and digits?

@@ -1,4 +1,4 @@
-package Apple_Prep.Arrays;
+package COMPANY_WISE_PROBLEMS.APPLE;
 
 //Clarifying questions
 //The input element can contain both -ve & +ve integers

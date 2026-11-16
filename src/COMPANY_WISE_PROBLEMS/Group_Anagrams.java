@@ -1,4 +1,4 @@
-package Apple_Prep.Arrays;
+package COMPANY_WISE_PROBLEMS;
 
 //Clarifying questions
 //The input array can contain both +ve & -ve integers?
@@ -17,9 +17,8 @@ package Apple_Prep.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Arrays;
 
-public class GroupAnagrams {
+public class Group_Anagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList<>();
         if(strs==null || strs.length==0)return result;
