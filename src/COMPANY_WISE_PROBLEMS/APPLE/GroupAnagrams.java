@@ -13,6 +13,7 @@ package COMPANY_WISE_PROBLEMS.APPLE;
 
 //Time Complexity: O(n*k)
 //Space Complexity: O(n*k)
+//https://leetcode.com/problems/group-anagrams/submissions/2197293629/?envType=company&envId=apple&favoriteSlug=apple-all
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,24 +22,25 @@ import java.util.List;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList<>();
+        HashMap<String,List<String>> seen = new HashMap<String,List<String>>();
         if(strs==null || strs.length==0)return result;
-        HashMap<String,List<String>> map = new HashMap<>();
         for(String str:strs){
             int[] freq = new int[26];
-            StringBuilder strBuild = new StringBuilder();
-            for(char ch:str.toCharArray()){
+            for(int i=0;i<str.length();i++){
+                char ch = str.charAt(i);
                 freq[ch-'a']++;
             }
-            for(int count:freq){
+            StringBuilder strBuild = new StringBuilder();
+            for(int i=0;i<freq.length;i++){
                 strBuild.append('#');
-                strBuild.append(count);
+                strBuild.append(freq[i]);
             }
             String key = strBuild.toString();
-            if(!map.containsKey(key)){
-                map.put(key,new ArrayList<>());
+            if(!seen.containsKey(key)){
+                seen.put(key,new ArrayList<>());
             }
-            map.get(key).add(str);
+            seen.get(key).add(str);
         }
-        return new ArrayList<>(map.values());
+        return new ArrayList<>(seen.values());
     }
 }
