@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.APPLE;
+package COMPANY_WISE_PROBLEMS.APPLE.TWO_POINTERS;
 
 //Clarifying questions
 //The input contains both +ve & -ve integers

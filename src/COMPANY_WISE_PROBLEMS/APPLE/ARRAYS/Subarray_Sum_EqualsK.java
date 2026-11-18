@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.APPLE;
+package COMPANY_WISE_PROBLEMS.APPLE.ARRAYS;
 
 //Clarifying questions
 //The input element can contain both -ve & +ve integers

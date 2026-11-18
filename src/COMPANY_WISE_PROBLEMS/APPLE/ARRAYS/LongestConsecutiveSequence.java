@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.APPLE;
+package COMPANY_WISE_PROBLEMS.APPLE.ARRAYS;
 
 //Clarifying questions
 //The input array contain both +ve & -ve integers?
@@ -18,23 +18,24 @@ import java.util.HashSet;
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
         if(nums==null || nums.length==0)return 0;
-        HashSet<Integer> set = new HashSet<Integer>();
-        int maxLen = 0;
+        HashSet<Integer> set = new HashSet<>();
+        int maxLength = 0;
         for(int i=0;i<nums.length;i++){
             set.add(nums[i]);
         }
-
-        for(int element:set){
-            if(!set.contains(element-1)){
-                int current = element;
-                int length = 1;
-                while(set.contains(current+1)){
-                    length++;
-                    current++;
-                }
-                maxLen = Math.max(length,maxLen);
+        for(int num:set){
+            //Only begin at the start of the sequence
+            if(num!=Integer.MIN_VALUE && set.contains(num-1)){
+                continue;
             }
+            int current = num;
+            int length = 1;
+            while(current != Integer.MAX_VALUE && set.contains(current+1)){
+                current++;
+                length++;
+            }
+            maxLength = Math.max(maxLength,length);
         }
-        return maxLen;
+        return maxLength;
     }
 }

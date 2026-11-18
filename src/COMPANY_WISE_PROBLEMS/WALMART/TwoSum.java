@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS;
+package COMPANY_WISE_PROBLEMS.WALMART;
 
 //Clarifying questions
 //Are we guranteed exactly one valid pair?
@@ -20,13 +20,13 @@ import java.util.HashMap;
 
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        if(nums==null || nums.length < 2)return new int[0];
-        int complement = 0;
+        if(nums==null || nums.length==0)return new int[0];
+        int remainder = 0;
         HashMap<Integer,Integer> map = new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            complement = target - nums[i];
-            if(map.containsKey(complement)){
-                return new int[] {map.get(complement),i};
+            remainder = target - nums[i];
+            if(map.containsKey(remainder)){
+                return new int[] {map.get(remainder),i};
             }
             map.put(nums[i],i);
         }

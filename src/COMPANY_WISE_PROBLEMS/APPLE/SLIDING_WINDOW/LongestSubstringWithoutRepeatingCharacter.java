@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.APPLE;
+package COMPANY_WISE_PROBLEMS.APPLE.SLIDING_WINDOW;
 
 //Clarifying questions
 //Will the string contain lowercase english letters and digits?

@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.APPLE;
+package COMPANY_WISE_PROBLEMS.APPLE.ARRAYS;
 //Clarifying Questions
 //The input array contains both +ve & -ve integers?
 //Each input have exactly one solution?
