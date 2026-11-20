@@ -1,21 +1,14 @@
 package Arrays;
-//URL: https://leetcode.com/problems/two-sum/?envType=company&envId=walmart-labs&favoriteSlug=walmart-labs-all
-//URL: https://leetcode.com/problems/two-sum/submissions/2179598695/?envType=company&envId=apple&favoriteSlug=apple-all
-
-//Clarifying questions
-//Input array can contain both +ve & -ve integers?
-//Input array can be empty?
-//Is exactly one valid solution guranteed?
-//Can the array contain duplicate values?
-//Can I use the same elements twice?
-//Should I return indices or values?
+//Clarifying Questions
+//The input array can contain both +ve & -ve integers?
+//The input array can be empty?
+//Return exactly one pair of indices?
+//Can I assume only one valid solution exists?
+//Should I return exactly one pair of indices?
 
 //Approach
-//I will use a one pass HashMap to store each previously visited number and its index.
-//For every element, I will calculate the complement required to reach the target
-//If the complement exists in the HashMap, I will return the stored index and the current index
-//Otherwise I will use the current element to HashMap
-//By checking before inserting, I will make sure I will not use the same element twice
+//I'll use a HashMap to store previously visited numbers and their indices. For each number,
+//I'll calculate the complement required to reach the target. If that complement already exists in the map, I've found two distinct //indices whose values sum to the target. Otherwise, I'll store the current number and continue.
 
 //Time Complexity: O(N)
 //Space Complexity: O(N)
@@ -30,7 +23,7 @@ public class TwoSum {
         for(int i=0;i<nums.length;i++){
             complement = target - nums[i];
             if(map.containsKey(complement)){
-                return new int[]{map.get(complement),i};
+                return new int[] {map.get(complement),i};
             }
             map.put(nums[i],i);
         }

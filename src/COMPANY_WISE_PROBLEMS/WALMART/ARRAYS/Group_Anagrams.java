@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.WALMART;
+package COMPANY_WISE_PROBLEMS.WALMART.ARRAYS;
 
 //Clarifying questions
 //The input array can contain both +ve & -ve integers?
