@@ -1,7 +1,6 @@
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 /**
  * APPROACH 3: Hybrid - Thread Pool + Bulk Inserts (BEST PERFORMANCE)
