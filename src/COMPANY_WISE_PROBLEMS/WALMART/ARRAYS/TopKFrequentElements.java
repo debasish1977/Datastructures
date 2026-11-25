@@ -1,4 +1,4 @@
-package Arrays;
+package COMPANY_WISE_PROBLEMS.WALMART.ARRAYS;
 
 //Clarifying questions
 //The input array can be empty?

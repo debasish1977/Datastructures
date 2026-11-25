@@ -1,4 +1,4 @@
-package Arrays;
+package COMPANY_WISE_PROBLEMS.APPLE.ARRAYS;
 
 //Clarifying questions
 //The input array can be empty?
