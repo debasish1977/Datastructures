@@ -18,23 +18,24 @@ import java.util.HashSet;
 
 public class Longest_Consecutive_Sequence {
     public int longestConsecutive(int[] nums) {
-        if(nums==null || nums.length==0)return 0;
+        if (nums == null || nums.length == 0) return 0;
         HashSet<Integer> numbers = new HashSet<Integer>();
         int maxLen = 0;
-        for(int num:nums){
+        for (int num : nums) {
             numbers.add(num);
         }
-        for(int num:numbers){
-            if(!numbers.contains(num-1)){
+        for (int num : numbers) {
+            if (!numbers.contains(num - 1)) {
                 int currentNumber = num;
                 int currentLength = 1;
-                while(numbers.contains(currentNumber+1)){
+                while (numbers.contains(currentNumber + 1)) {
                     currentNumber++;
                     currentLength++;
                 }
-                maxLen = Math.max(maxLen,currentLength);
+                maxLen = Math.max(maxLen, currentLength);
             }
 
         }
         return maxLen;
+    }
 }

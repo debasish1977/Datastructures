@@ -1,4 +1,4 @@
-package COMPANY_WISE_PROBLEMS.WALMART.ARRAYS.TWO_POINTERS;
+package COMPANY_WISE_PROBLEMS.WALMART.TWO_POINTERS;
 
 public class TwoPointers {
     static boolean twoSum(int[] arr,int target){
